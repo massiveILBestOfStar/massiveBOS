@@ -1,0 +1,16 @@
+.pJudul{
+    font-weight:bold;
+    margin-top: 15px;
+}
+
+.imgAction{
+    margin-top: -50px;
+    margin-left: 500px;
+}
+.imgActionKomen{
+    margin-top: -50px;
+    text-align: right;
+}
+.dateKomen{
+    text-align: right;
+}

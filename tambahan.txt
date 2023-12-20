@@ -1,0 +1,147 @@
+kalau mau bikin tabel balas diskusi
+
+CREATE TABLE balasan_diskusi (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  id_diskusi INT,
+  username VARCHAR(255),
+  isi_balasan TEXT,
+  FOREIGN KEY (id_diskusi) REFERENCES diskusi(id)
+);
+ 
+kode diatas tulis di xammp
+
+exports.getBalasanDiskusi = (req, res) => {
+  const { id_diskusi } = req.params;
+  const sql = 'SELECT * FROM balasan_diskusi WHERE id_diskusi = ?';
+  db.query(sql, [id_diskusi], (err, result) => {
+    if (err) {
+      console.error('Error executing query:', err);
+      res.status(500).json({ success: false, message: 'Failed to fetch balasan diskusi' });
+      return;
+    }
+    res.status(200).json({ success: true, data: result });
+  });
+};
+
+kode diatas tulis di be controller jadikan satu sama diskusi kontroller
+
+untuk fe nya ini
+
+import React, { useState, useEffect } from 'react';
+
+const DiskusiList = ({ diskusiList }) => {
+  const [balasanDiskusi, setBalasanDiskusi] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [username, setUsername] = useState('');
+  const [isiBalasan, setIsiBalasan] = useState('');
+
+  const fetchBalasanDiskusi = async (id_diskusi) => {
+    try {
+      const response = await fetch(`http://localhost:3001/api/balasan-diskusi/${id_diskusi}`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch balasan diskusi');
+      }
+      const data = await response.json();
+      setBalasanDiskusi(data.data);
+    } catch (error) {
+      console.error('Error fetching balasan diskusi:', error.message);
+    }
+  };
+
+  const handleChatClick = (diskusi) => {
+    // Fetch balasan diskusi berdasarkan id diskusi
+    fetchBalasanDiskusi(diskusi.id);
+    // Tampilkan modal atau elemen lain untuk menampilkan balasan diskusi
+    setShowModal(true);
+  };
+
+  // Fungsi untuk menangani pengiriman balasan diskusi
+  const handleBalasDiskusi = async (e) => {
+    e.preventDefault();
+
+    // Lakukan pengiriman balasan diskusi ke server atau lakukan sesuai kebutuhan
+    try {
+      const response = await fetch('http://localhost:3001/api/balasan-diskusi', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          id_diskusi: balasanDiskusi[0].id_diskusi,
+          username,
+          isi_balasan: isiBalasan,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Error sending balasan diskusi');
+      }
+
+      // Perbarui daftar balasan diskusi atau lakukan sesuai kebutuhan
+      fetchBalasanDiskusi(balasanDiskusi[0].id_diskusi);
+      // Bersihkan formulir setelah pengiriman
+      setUsername('');
+      setIsiBalasan('');
+    } catch (error) {
+      console.error('Error sending balasan diskusi:', error.message);
+    }
+  };
+
+  return (
+    <div className="container">
+      {diskusiList.map((diskusi) => (
+        <div className="diskusi" key={diskusi.id}>
+          <p className="pJudul">{diskusi.judul_topik}</p>
+          <div className="imgAction">
+            <img src={imgChat} alt="Chat" onClick={() => handleChatClick(diskusi)} />
+          </div>
+        </div>
+      ))}
+
+      {/* Tampilkan balasan diskusi di sini */}
+      <div>
+        <h3>Balasan Diskusi</h3>
+        {balasanDiskusi.map((balasan) => (
+          <div key={balasan.id}>
+            <p>{balasan.isi_balasan}</p>
+            <p>Username: {balasan.username}</p>
+          </div>
+        ))}
+      </div>
+
+      {/* Modal untuk menampilkan formulir balasan diskusi */}
+        <div className={`modal fade ${showModal ? 'show' : ''}`} id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style={{ display: `${showModal ? 'block' : 'none'}` }}>
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h1 className="modal-title fs-5" id="exampleModalLabel">Balasan Diskusi</h1>
+              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={() => setShowModal(false)}></button>
+            </div>
+            <div className="modal-body">
+              {/* Formulir untuk balas diskusi */}
+              <form onSubmit={handleBalasDiskusi}>
+                <div className="mb-3">
+                  <label htmlFor="username" className="form-label">Username:</label>
+                  <input type="text" className="form-control" id="username" value={username} onChange={(e) => setUsername(e.target.value)} required />
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="isiBalasan" className="form-label">Isi Balasan:</label>
+                  <textarea className="form-control" id="isiBalasan" value={isiBalasan} onChange={(e) => setIsiBalasan(e.target.value)} rows="3" required></textarea>
+                </div>
+                <button type="submit" className="btn btn-primary">Balas Diskusi</button>
+              </form>
+            </div>
+            <div className="modal-footer">
+              <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" onClick={() => setShowModal(false)}>
+                Close
+              </button>
+              {/* Tambahkan tombol atau aksi lain jika diperlukan */}
+            </div>
+          </div>
+        </div>
+      </div>
+  );
+};
+
+export default DiskusiList;
+

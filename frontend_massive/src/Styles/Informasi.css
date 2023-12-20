@@ -1,0 +1,12 @@
+table{
+    text-align: center;
+    margin-right: 200px;
+}
+th{
+    text-align: center;
+}
+.tdJudul{
+    text-align: left;
+    font-weight: bold;
+    width: 500px;
+}

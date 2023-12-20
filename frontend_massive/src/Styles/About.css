@@ -1,0 +1,166 @@
+.c_about-frame {
+    width: 100%;
+    overflow: hidden;
+    max-width: 1440px;
+    box-sizing: border-box;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: flex-start;
+    background-color: #fff;
+  }
+  
+  .c_about-rectangle,
+  .c_about-rectangle1,
+  .c_about-rectangle2 {
+    width: 100%;
+    height: auto;
+    margin: 100px 80px;
+    display: block;
+    max-width: 1437px;
+    border-radius: 20px 20px 20px 20px;
+  }
+  
+  .c_about-rectangle1,
+  .c_about-rectangle2 {
+    max-width: 414px;
+  }
+  
+  .c_about-rectangle2 {
+    max-width: 1440px;
+    border-top: 1px solid #9a9a9a;
+    box-shadow: 0 4px 4px 0 rgba(0,0,0,.25);
+    border-left: 1px solid #9a9a9a;
+    border-right: 1px solid #9a9a9a;
+    border-bottom: 1px solid #9a9a9a;
+  }
+  
+  .aboutText {
+    width: 100%;
+    max-width: 1210px;
+    margin-top: -150px;
+    min-height: auto;
+    margin-left: 75px;
+    margin-right: 75px;
+    text-align: justify;
+    margin-bottom: 0;
+  }
+  
+  .aboutTextParagraf {
+    color: #000;
+    font-size: 28px;
+    font-style: normal;
+    margin-top: 0;
+    text-align: justify;
+    font-family: "Roboto",sans-serif;
+    font-weight: 400;
+    line-height: normal;
+    margin-bottom: 0;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+  
+  
+  .isiAboutText {
+    color: #000;
+    width: 700px;
+    font-size: 22px;
+    font-style: normal;
+    margin: -365px 550px;
+    padding-bottom: 75px;
+    text-align: justify;
+    font-family: "Roboto",sans-serif;
+    font-weight: 400;
+    line-height: normal;
+    margin-bottom: 0;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+  
+  .quoteAbout,
+  .quoteAboutText {
+    margin-left: 50px;
+    text-align: center;
+    margin-bottom: 100px;
+    margin-top: 100px;
+  }
+  
+  .quoteAbout{
+    width: 100%;
+    max-width: 1192px;
+    min-height: auto;
+  }
+  
+  .quoteAboutText {
+    color: #000;
+    font-size: 25px;
+    font-style: normal;
+    font-family: "Roboto",sans-serif;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+  
+  .c_about-frame1 {
+    width: 100%;
+    overflow: hidden;
+    max-width: 1440px;
+    box-sizing: border-box;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: flex-start;
+    background-image: linear-gradient(-15deg,#b2f999 0,#15a603 38%,#5cff63fc 100%);
+  }
+  
+  .petani{
+    margin-left: 500px;
+    width: 80%;
+    height: 100px;
+    margin-bottom: 50px;
+  }
+  .petaniJudul,
+  .PetaniText{
+    margin-top: 50px 500px;
+    margin-bottom: 0;
+  }
+  
+  .petaniJudul {
+    width: 100%;
+    max-width: 335px;
+    min-height: 61px;
+  }
+  
+  .petaniText {
+    color: #7eb693;
+    font-size: 50px;
+    font-style: normal;
+    font-family: "Poppins",serif;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  .imgPetani{
+    height: 500px;
+  }
+  .imgPetani1 {
+    margin-left: 60px;
+    height: auto;
+    display: block;
+    max-width: 383px;
+    border-radius: 20px 20px 20px 20px;
+  }
+  
+  .imgPetani2 {
+    margin-left:  50px;
+    max-width: 370px;
+  }
+  
+  .imgPetani3 {
+    margin-left:  50px;
+    max-width: 390px;
+    margin-top: 0px;
+  }
+  
+  
